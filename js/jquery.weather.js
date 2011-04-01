@@ -41,23 +41,36 @@
 			jqw.todaysCondition = obj.forecast_conditions[0].condition.data;
 			jqw.city = obj.forecast_information.city.data;
 			
+			
+			// Account for temp scale
+			if (jqw.options.temp_scale.toLowerCase() == "c") {
+				jqw.currentTemp = jqw.returnCelcius(jqw.currentTemp) + '&deg; C';
+				jqw.todaysHigh = jqw.returnCelcius(jqw.todaysHigh) + '&deg; C';
+				jqw.todaysLow = jqw.returnCelcius(jqw.todaysLow) + '&deg; C';
+			} else {
+				jqw.currentTemp = jqw.currentTemp + '&deg; F';
+				jqw.todaysHigh = jqw.todaysHigh + '&deg; F';
+				jqw.todaysLow = jqw.todaysLow + '&deg; F';
+			}
+			
+			
 			// Layout logic
-			if (jqw.options.layout == 'horizontal') {
+			if (jqw.options.layout == 'h') {
 				$(jqw.obj).html('<div id="jqw_hori"></div>');
-				$("#jqw_hori").append('<table cellpadding="3" cellspacing="0" border="0"><tr><td><img src="http://weatherapi.heroku.com/images/' + jqw.currentIcon + '"></td><td>' + jqw.city + ' / ' + jqw.currentTemp + '&deg; F</td></tr></table>');
+				$("#jqw_hori").append('<table cellpadding="3" cellspacing="0" border="0"><tr><td><img src="http://weatherapi.heroku.com/images/' + jqw.currentIcon + '"></td><td>' + jqw.city + ' / ' + jqw.currentTemp + '</td></tr></table>');
 			} else if (jqw.options.layout == 'raw') {
 				var layout = '';
 				layout += '<ul id="jQuery_weather">';
 				layout += '<li id="jqw_city">' + jqw.city + '</li>';
 				layout += '<li id="jqw_current_condition">' + jqw.currentCondition + '</li>';
-				layout += '<li id="jqw_current_temp">' + jqw.currentTemp + '&deg; F</li>';
-				layout += '<li id="jqw_current_temp_c">' + jqw.currentTemp_C + '&deg; C</li>';
+				layout += '<li id="jqw_current_temp">' + jqw.currentTemp + '</li>';
+				layout += '<li id="jqw_current_temp_c">' + jqw.currentTemp_C + '</li>';
 				layout += '<li id="jqw_current_icon">http://weatherapi.heroku.com/images/' + jqw.currentIcon + '</li>';
 				layout += '<li id="jqw_current_wind">' + jqw.currentWind + '</li>';
-				layout += '<li id="jqw_todays_high">' + jqw.todaysHigh + '&deg; F</li>';
-				layout += '<li id="jqw_todays_low">' + jqw.todaysLow + '&deg; F</li>';
-				layout += '<li id="jqw_todays_high_c">' + jqw.todaysHigh_C + '&deg; C</li>';
-				layout += '<li id="jqw_todays_low_c">' + jqw.todaysLow_C + '&deg; C</li>';
+				layout += '<li id="jqw_todays_high">' + jqw.todaysHigh + '</li>';
+				layout += '<li id="jqw_todays_low">' + jqw.todaysLow + '</li>';
+				layout += '<li id="jqw_todays_high_c">' + jqw.todaysHigh_C + '</li>';
+				layout += '<li id="jqw_todays_low_c">' + jqw.todaysLow_C + '</li>';
 				layout += '<li id="jqw_todays_forecast_icon">http://weatherapi.heroku.com/images/' + jqw.todaysIcon + '</li>';
 				layout += '<li id="jqw_todays_forcast_condition">' + jqw.todaysCondition + '</li>';
 				layout += '</ul>';
@@ -65,9 +78,9 @@
 				$(jqw.obj).html(layout);
 			} else {
 				$(jqw.obj).html('<div id="jqw_virt" style="text-align: center;"></div>');
-				$("#jqw_virt").append(jqw.city + '<br />');
+				$("#jqw_virt").append('<div class="jqw_city">' + jqw.city + '</div>');
 				$("#jqw_virt").append('<img src="http://weatherapi.heroku.com/images/' + jqw.todaysIcon + '"><br />');
-				$("#jqw_virt").append(jqw.todaysCondition + ' ' + jqw.todaysHigh + '&deg; | ' + jqw.todaysLow + '&deg;<br />');
+				$("#jqw_virt").append('<div id="jqw_today_meta"><span class="jqw_condition">' + jqw.todaysCondition + '</span> <span class="jqw_high">' + jqw.todaysHigh + '</span> | <span class="jqw_low">' + jqw.todaysLow + '</span></div>');
 			}
 		});
 		
