@@ -5,25 +5,110 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>jQuery Weather</title>
-	<!-- Google Loaded jQuery for Example -->
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/buttons.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="css/lib.css" type="text/css" media="screen" charset="utf-8">
+	
+	
+	<!-- Google Hosted jQuery via CDN -->
 	<script src="http://www.google.com/jsapi"></script>
 	<script>google.load("jquery", "1");</script>
 	
+	<!-- Weather Plugin -->
 	<script src="js/jquery.weather.js" type="text/javascript" charset="utf-8"></script>
 	
-	<script>
+	<!-- JS -->
+	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#weather_example").weather({
-				location : "seattle",
-				layout   : "h",
-				temp_scale : "f"
-			});
+			setWeather("v","f");
+			
+			$('#q_loc').keypress(function(e){
+				if(e.which == 13){
+					setWeather("v","f",$('#q_loc').val());
+				}
+			});		
 		});
+		
+		function setWeather(layout,scale,loc) {
+			
+			console.log(loc);
+			
+			if (typeof loc == 'undefined') {
+				loc = "Seattle"
+			}
+			
+			$("#weather_example_1").weather({
+				location : loc,
+				layout   : layout,
+				temp_scale : scale
+			});
+		}
 	</script>
 </head>
 <body>
-	<div id="weather_example">
-		
+	<div id="header">
+		<h1>jQuery Weather Plugin</h1>
+	</div>
+	<div class="container container_12">
+		<div class="grid_12">
+			<h2>What is the jQuery Weather Plugin You Ask?</h2>
+			<p>
+				This plugin in has no other desire than to be a cute little way to display current weather on your website using jQuery.  For now, there are simply three modes you can view the data in:
+				<ul>
+					<li>A simple vertical mode.</li>
+					<li>A simple horizontal mode.</li>
+					<li>Raw, unordered list.</li>
+				</ul>
+			</p>
+		</div>
+		<div class="grid_12">
+			<h2>Example:</h2>
+			<div id="weather_example_1" style=""></div>
+			<p><a href='javascript: setWeather("h","f");'>View Horizontal</a> | <a href='javascript: setWeather("v","f");'>View Vertical</a> | <a href='javascript: setWeather("raw","f");'>View Raw List</a> | &nbsp;&nbsp; <input type="text" name="q" id="q_loc" value="Enter a Loction" onfocus="this.value=''"> <button class="download-itunes">Search Weather</button></p>
+		</div>
+		<div class="grid_12">
+			<h2>Options:</h2>
+			<p>
+				<table cellpadding="8" cellsapcing="3" border="0" bgcolor="#cccccc">
+					<tr>
+						<td bgcolor="#f5f5f5"><strong>Parameter</strong></td>
+						<td bgcolor="#f5f5f5"><strong>Type</strong></td>
+						<td bgcolor="#f5f5f5"><strong>Value</strong></td>
+					</tr>
+					<tr>
+						<td bgcolor="#f5f5f5">Location</td>
+						<td bgcolor="#f5f5f5">String</td>
+						<td bgcolor="#f5f5f5">Any US, Canadian, or Mexican city.</td>
+					</tr>
+					<tr>
+						<td bgcolor="#f5f5f5">layout</td>
+						<td bgcolor="#f5f5f5">String</td>
+						<td bgcolor="#f5f5f5">"v" (Vertical - default); "h" (Horizontal)</td>
+					</tr>
+					<tr>
+						<td bgcolor="#f5f5f5">temp_scale</td>
+						<td bgcolor="#f5f5f5">String</td>
+						<td bgcolor="#f5f5f5">"f" (Fahrenheit - default); "c" (Celsius)</td>
+					</tr>
+				</table>
+			</p>
+		</div>
+		<div class="grid_12">
+			<h2>Notes / To-Do's</h2>
+			<p>
+				Right now, the plugin only accounts for light backgrounds.  This will change with an upcoming option of choosing icons in an assortment of colors.
+			</p>
+			<p>
+				Some might ask what is the point of the "raw" list.  If you're asking that question then the option isn't meant for you.
+			</p>
+			<p>
+				This was all made possible because of the Google weather API.  Because the Google weather API is an XML based API I created a JSON-P wrapper and hosting it at Heroku.  This is why the icons are served from there.  If you want to do other things using the API I totally invite you to use the service.  You can find it at <a href="http://weatherapi.heroku.com">http://weatherapi.heroku.com</a>.
+			</p>
+			<p>
+				I've also open-sourced the JSON-P wrapper for the Google weather API.  You can fork that project <a href="https://github.com/iamjpg/Weather-API">here</a>.
+			</p>
+		</div>
 	</div>
 </body>
 </html>

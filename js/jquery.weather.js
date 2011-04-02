@@ -64,13 +64,13 @@
 				layout += '<li id="jqw_city">' + jqw.city + '</li>';
 				layout += '<li id="jqw_current_condition">' + jqw.currentCondition + '</li>';
 				layout += '<li id="jqw_current_temp">' + jqw.currentTemp + '</li>';
-				layout += '<li id="jqw_current_temp_c">' + jqw.currentTemp_C + '</li>';
+				layout += '<li id="jqw_current_temp_c">' + jqw.currentTemp_C + '&deg; C</li>';
 				layout += '<li id="jqw_current_icon">http://weatherapi.heroku.com/images/' + jqw.currentIcon + '</li>';
 				layout += '<li id="jqw_current_wind">' + jqw.currentWind + '</li>';
 				layout += '<li id="jqw_todays_high">' + jqw.todaysHigh + '</li>';
 				layout += '<li id="jqw_todays_low">' + jqw.todaysLow + '</li>';
-				layout += '<li id="jqw_todays_high_c">' + jqw.todaysHigh_C + '</li>';
-				layout += '<li id="jqw_todays_low_c">' + jqw.todaysLow_C + '</li>';
+				layout += '<li id="jqw_todays_high_c">' + jqw.todaysHigh_C + '&deg; C</li>';
+				layout += '<li id="jqw_todays_low_c">' + jqw.todaysLow_C + '&deg; C</li>';
 				layout += '<li id="jqw_todays_forecast_icon">http://weatherapi.heroku.com/images/' + jqw.todaysIcon + '</li>';
 				layout += '<li id="jqw_todays_forcast_condition">' + jqw.todaysCondition + '</li>';
 				layout += '</ul>';
@@ -80,7 +80,8 @@
 				$(jqw.obj).html('<div id="jqw_virt" style="text-align: center;"></div>');
 				$("#jqw_virt").append('<div class="jqw_city">' + jqw.city + '</div>');
 				$("#jqw_virt").append('<img src="http://weatherapi.heroku.com/images/' + jqw.todaysIcon + '"><br />');
-				$("#jqw_virt").append('<div id="jqw_today_meta"><span class="jqw_condition">' + jqw.todaysCondition + '</span> <span class="jqw_high">' + jqw.todaysHigh + '</span> | <span class="jqw_low">' + jqw.todaysLow + '</span></div>');
+				$("#jqw_virt").append('<div id="jqw_today_meta"><span class="jqw_condition">' + jqw.todaysCondition + '</span>, <span class="jqw_high">' + jqw.todaysHigh + '</span> | <span class="jqw_low">' + jqw.todaysLow + '</span></div>');
+				$("#jqw_virt").append('<div id="jqw_wind">' + jqw.currentWind + '</div>');
 			}
 		});
 		
