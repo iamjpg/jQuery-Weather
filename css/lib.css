@@ -39,3 +39,11 @@ a {
 #q_loc {
 	padding: 3px;
 }
+
+p.credit {
+    border-top: 1px solid #CCCCCC;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 36px 0 50px 0;
+    padding: 6px 0 0;
+}
