@@ -21,29 +21,12 @@
 	<!-- JS -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-			setWeather("v","f");
-			
-			$('#q_loc').keypress(function(e){
-				if(e.which == 13){
-					setWeather("v","f",$('#q_loc').val());
-				}
-			});		
-		});
-		
-		function setWeather(layout,scale,loc) {
-			
-			console.log(loc);
-			
-			if (typeof loc == 'undefined') {
-				loc = "Seattle"
-			}
-			
-			$("#weather_example_1").weather({
-				location : loc,
-				layout   : layout,
-				temp_scale : scale
+			$("#weather").weather({
+				location : "Seattle, WA",
+				layout   : "v",
+				temp_scale : "f"
 			});
-		}
+		});
 	</script>
 </head>
 <body>
@@ -52,20 +35,16 @@
 	</div>
 	<div class="container container_12">
 		<div class="grid_12">
-			<h2>What is the jQuery Weather Plugin You Ask?</h2>
+			<h2>Example</h2>
+			<div id="weather"></div>
 			<p>
-				This is simply a cute little widget for displaying current weather on your website.  For now, there are three modes you can view the data in:
+				For now, there are three modes you can view the data in:
 				<ul>
 					<li>A simple vertical mode.</li>
 					<li>A simple horizontal mode.</li>
 					<li>Raw, unordered list.</li>
 				</ul>
 			</p>
-		</div>
-		<div class="grid_12">
-			<h2>Example:</h2>
-			<div id="weather_example_1" style=""></div>
-			<p><a href='javascript: setWeather("h","f");'>View Horizontal</a> | <a href='javascript: setWeather("v","f");'>View Vertical</a> | <a href='javascript: setWeather("raw","f");'>View Raw List</a> | &nbsp;&nbsp; <input type="text" name="q" id="q_loc" value="Enter a Loction" onfocus="this.value=''"> <button class="download-itunes">Search Weather</button></p>
 		</div>
 		<div class="grid_12">
 			<h2>Options:</h2>
@@ -84,7 +63,7 @@
 					<tr>
 						<td bgcolor="#f5f5f5">layout</td>
 						<td bgcolor="#f5f5f5">String</td>
-						<td bgcolor="#f5f5f5">"v" (Vertical - default); "h" (Horizontal)</td>
+						<td bgcolor="#f5f5f5">"v" (Vertical - default); "h" (Horizontal); "raw" (raw list)</td>
 					</tr>
 					<tr>
 						<td bgcolor="#f5f5f5">temp_scale</td>
