@@ -27,8 +27,14 @@
 				if(e.which == 13){
 					setWeather("v","f",$('#q_loc').val());
 				}
-			});		
+			});	
+			
+			$("button.download-itunes").bind("click", function() {
+				setWeather("v","f",$('#q_loc').val());
+			});	
 		});
+		
+		
 		
 		function setWeather(layout,scale,loc) {
 			
