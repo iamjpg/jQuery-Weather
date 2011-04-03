@@ -20,7 +20,7 @@ h1, h2, h3, h4 {
 #header h1 {
 	background: url('../images/header.jpg') no-repeat center center;
 	text-indent: -9000px;
-	margin: 20px;
+	margin: 40px 0 40px 0;
 }
 
 a {

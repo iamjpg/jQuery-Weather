@@ -57,7 +57,7 @@
 			// Layout logic
 			if (jqw.options.layout == 'h') {
 				$(jqw.obj).html('<div id="jqw_hori"></div>');
-				$("#jqw_hori").append('<table cellpadding="3" cellspacing="0" border="0"><tr><td><img src="http://weatherapi.heroku.com/images/' + jqw.currentIcon + '"></td><td>' + jqw.city + ' / ' + jqw.currentTemp + '</td></tr></table>');
+				$("#jqw_hori").append('<table cellpadding="3" cellspacing="0" border="0"><tr><td><img src="http://weatherapi.heroku.com/images/' + jqw.todaysIcon + '"></td><td>' + jqw.city + ' / ' + jqw.currentTemp + '</td></tr></table>');
 			} else if (jqw.options.layout == 'raw') {
 				var layout = '';
 				layout += '<ul id="jQuery_weather">';
