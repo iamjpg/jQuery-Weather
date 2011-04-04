@@ -28,6 +28,8 @@
 				});
 			});
 			
+			
+			
 			$('#q_loc').keypress(function(e){
 				if(e.which == 13){
 					setWeather("v","f",$('#q_loc').val());
@@ -42,6 +44,11 @@
 		
 		
 		function setWeather(layout,scale,loc) {
+			
+			if (typeof loc == 'undefined') {
+				loc = "Danville, CA"
+			}
+			
 			$("#weather_example_1").weather({
 				location : loc,
 				layout   : layout,
