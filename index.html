@@ -21,7 +21,12 @@
 	<!-- JS -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-			setWeather("v","f");
+			
+			$.getJSON("http://jsonip.appspot.com/?callback=?", function(data) {
+				$.getJSON("http://www.geoplugin.net/json.gp?ip=" + data.ip + "&jsoncallback=?", function(data) {
+					setWeather("v","f", data.geoplugin_city + ", " + data.geoplugin_region);
+				});
+			});
 			
 			$('#q_loc').keypress(function(e){
 				if(e.which == 13){
@@ -37,13 +42,6 @@
 		
 		
 		function setWeather(layout,scale,loc) {
-			
-			console.log(loc);
-			
-			if (typeof loc == 'undefined') {
-				loc = "Seattle"
-			}
-			
 			$("#weather_example_1").weather({
 				location : loc,
 				layout   : layout,
